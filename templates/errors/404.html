@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | HMS</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #dee2e6;
+            line-height: 1;
+        }
+        .error-title {
+            font-size: 1.5rem;
+            color: #212529;
+            margin: 1rem 0;
+        }
+        .error-text {
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div>
+            <div class="error-code">404</div>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-text">The page you are looking for doesn't exist or has been moved.</p>
+            <a href="/" class="btn btn-primary">Go to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
