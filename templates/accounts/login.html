@@ -1,0 +1,58 @@
+{% extends 'base_auth.html' %}
+
+{% block title %}Login - HMS{% endblock %}
+
+{% block auth_content %}
+<div class="auth-header">
+    <svg class="auth-logo" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="12" fill="#0f4c75"/>
+        <path d="M30 12C26.25 12 23.25 15 23.25 18.75V28.125H18.75C15 28.125 12 31.125 12 34.875C12 38.625 15 41.625 18.75 41.625H23.25V50.25C23.25 54 26.25 57 30 57C33.75 57 36.75 54 36.75 50.25V41.625H41.25C45 41.625 48 38.625 48 34.875C48 31.125 45 28.125 41.25 28.125H36.75V18.75C36.75 15 33.75 12 30 12Z" fill="white"/>
+    </svg>
+    <h1 class="auth-title">Welcome Back</h1>
+    <p class="auth-subtitle">Sign in to access your Hospital Management System</p>
+</div>
+
+<div class="auth-body">
+    <form method="post" novalidate>
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger mb-3">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+        
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}" class="form-label">Email or Username</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+            <div class="form-error">{{ form.username.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+            <div class="form-error">{{ form.password.errors.0 }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="form-group d-flex justify-content-between align-items-center">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+            </div>
+            <a href="{% url 'accounts:password_reset' %}" class="text-primary small">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block mt-3">
+            Sign In
+        </button>
+    </form>
+</div>
+
+<div class="auth-footer">
+    <p>Don't have an account? <a href="{% url 'accounts:register' %}">Register here</a></p>
+</div>
+{% endblock %}
